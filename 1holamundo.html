@@ -1,0 +1,19 @@
+<html>
+   <head>
+      <title>
+         WEB CON JS
+      </title>
+      <script language="javascript">
+         function botonTocado ()
+         {
+             alert ("Ha tocado el boton");
+             var nombre = document.getElementById("nombre").value;
+             alert ("Su longuitud " + nombre.length);
+         }
+      </script>
+   </head>
+   <body>
+       <input type="text" id="nombre">
+       <button onclick="botonTocado();">Dale</button>
+   </body>
+</html>
