@@ -4,12 +4,20 @@
          WEB CON JS
       </title>
       <script language="javascript">
+          var contador = 0;
+          alert ("Buenos días");
          function botonTocado ()
          {
+             
              alert ("Ha tocado el boton");
              var nombre = document.getElementById("nombre").value;
              alert ("Su longuitud " + nombre.length);
+             var n_mayus = nombre.toUpperCase();
+             console.log ("N_MAYUS = " + n_mayus);
+             contador = contador + 1;//contador++
+             console.log ("Le ha dado " + contador + " veces");
          }
+
       </script>
    </head>
    <body>

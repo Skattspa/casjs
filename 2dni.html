@@ -1,0 +1,32 @@
+<html>
+   <head>
+      <title>
+         WEB CON JS
+      </title>
+      <script language="javascript">
+          const SECUENCIA_DNI = "TRWAGMYFPDXBNJZSQVHLCKE";
+         function calcularLetraDni ()
+         {
+             var caja_dni = document.getElementById("dni");
+             var str_dni = caja_dni.value;
+             var num_dni = parseInt (str_dni);
+             if (isNaN(num_dni))
+            {//caso de que NO es un número
+                alert ("Mete un número");
+            } else { //Es un número lo que ha metido
+                var resto = num_dni%23;//SECUENCIA_DNI.lenght
+                var letra = SECUENCIA_DNI.charAt(resto)
+                console.log ("LEtra = " + letra);
+
+                document.getElementById("letra").value=letra;
+            }
+             
+         }
+      </script>
+   </head>
+   <body>
+       <label for="dni">DNI</label><input type="text" name="dni" id="dni"><br>
+       <label for="letra">LETRA</label><input name="letra" type="text" size="1" id="letra">
+       <button onclick="calcularLetraDni();">Calcula letra</button>
+   </body>
+</html>
