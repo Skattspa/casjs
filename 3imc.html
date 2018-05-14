@@ -1,0 +1,59 @@
+<html>
+
+<head>
+    <title>
+        WEB CON JS
+    </title>
+    <script language="javascript">
+
+        function imc(peso, estatura) {
+            var imc = 0;
+
+            imc = peso / (estatura * estatura);
+
+            return imc;
+        }
+        function imcNominal(imcnumerico) {
+            var str_imc = "";
+
+                if (imcnumerico < 16) {
+                    str_imc = 'desnutrido';
+
+                } else if (imcnumerico >= 16 && imcnumerico < 18) {
+                    str_imc = 'delgado';
+
+                } else if (imcnumerico >= 18 && imcnumerico < 25) {
+                    str_imc = 'ideal';
+
+                } else if (imcnumerico >= 25 && imcnumerico < 31) {
+                    str_imc = 'sobrepeso';
+                }
+
+                else {
+                    str_imc = 'obeso';
+                }
+
+            return str_imc;
+        }
+        function calcularIMC() {
+            var peso = document.getElementById("peso").value;
+            var estatura = document.getElementById("estatura").value;;
+            var imcnumerico = imc(parseFloat(peso), parseFloat(estatura));
+            var imcstring = imcNominal (imcnumerico);
+            alert (" IMCS " + imcstring + " " + imcnumerico);
+            document.getElementById ("res").src = "pantera.jpg";
+        }
+    </script>
+</head>
+
+<body>
+    <label for="dni">PESO (Kg)</label>
+    <input type="text" size="4" name="dni" id="peso">
+    <br>
+    <label for="letra">ESTATURA (m)</label>
+    <input type="text" size="4" id="estatura">
+    <button onclick="calcularIMC();">Calcula IMC</button><br>
+    <img id="res">
+</body>
+
+</html>
