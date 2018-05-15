@@ -36,21 +36,31 @@
             return str_imc;
         }
         function calcularIMC() {
+            console.log ("Calcular IMC invocado");
             var peso = document.getElementById("peso").value;
             var estatura = document.getElementById("estatura").value;;
             var imcnumerico = imc(parseFloat(peso), parseFloat(estatura));
             var imcstring = imcNominal (imcnumerico);
             alert (" IMCS " + imcstring + " " + imcnumerico);
-            document.getElementById ("res").src = "pantera.jpg";
+            //hago coincidir el nombre del imc
+            //con el de la imagen
+            document.getElementById ("res").src = imcstring + ".jpeg";
         }
     </script>
 </head>
 
 <body>
+<<<<<<< HEAD
     <label for="dni">PESO (Kg)</label>
     <input type="text" size="4" name="dni" id="peso">
     <br>
     <label for="letra">ESTATURA (m)</label>
+=======
+    <label for="peso">PESO (Kg)</label>
+    <input type="text" size="4" id="peso">
+    <br>
+    <label for="estatura">ESTATURA (m)</label>
+>>>>>>> e025e9508cc41eb7eebb645e51707fb20b3cc5ce
     <input type="text" size="4" id="estatura">
     <button onclick="calcularIMC();">Calcula IMC</button><br>
     <img id="res">

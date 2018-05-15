@@ -1,0 +1,118 @@
+<html>
+   <head>
+      <title>
+         TOMBOLA ONLINE
+      </title>
+      <script language="javascript">
+         
+         const LIM_INFERIOR = 1;
+         const LIM_SUPERIOR = 100;
+         const NUM_VIDAS = 5;
+
+         const PREGUNTA = "Dime un numero";
+         const MENSAJE_INFO_MAYOR = "El número buscado es menor";
+         const MENSAJE_INFO_MENOR = "El número buscado es mayor";
+         const MENSAJE_INFO_ACIERTO = "Acertaste champion";
+         const MENSAJE_INFO_FALLO = "FIN Lo siento. Buscábamos el ...";
+
+         window.onload = inicio;
+
+
+        /*
+        Funcionalidad
+        Entrada
+        Salida
+        Precondiciones Supono q el liminferio es < lim_superior
+        Postocondiciones
+        **/
+        function genererarNumeroAleatorio (lim_inferior, lim_superior)
+        {
+            var num_aleatorio = 0;
+
+                   var n1 = Math.random();//entro 0 y 1
+                   num_aleatorio = (n1 * (lim_superior-lim_inferior+1) )+ lim_inferior
+                   num_aleatorio = Math.ceil(num_aleatorio);//redondeo
+
+            return num_aleatorio;
+        }
+         function pedirNumero ()
+        {
+            var num_introducido = 0;
+            
+                num_introducido = prompt(PREGUNTA);
+
+            return num_introducido;
+        }
+
+        function comparar (num_introducido, numero_aleatorio)
+        {
+            var str_resultado = '';
+
+                    if (num_introducido>numero_aleatorio)
+                    {
+                        str_resultado='mayor';
+                    } else if (num_introducido<numero_aleatorio) 
+                    {
+                        str_resultado='menor';
+                    } else 
+                        {
+                            str_resultado='igual';
+                        }
+
+            return str_resultado;
+        }
+
+        function leQuedanVidas (num_intentos)
+        {
+            var quedan_vidas = false;
+
+                if (num_intentos<NUM_VIDAS)
+                {
+                    quedan_vidas = true;
+                }
+
+            return quedan_vidas;
+        }
+        function informar (mensaje)
+        {
+            alert (mensaje);
+        }
+         function inicio()
+         {
+            var num_aleatorio = genererarNumeroAleatorio(LIM_INFERIOR, LIM_SUPERIOR);
+            var num_introducido = 0;
+            var resultado_comp = '';
+            var acertado = false;
+            console.log("Num aleatorio generado = " + num_aleatorio);
+
+            var num_intentos = 0;
+            do{    
+                num_introducido = pedirNumero();
+                resultado_comp = comparar(num_introducido, num_aleatorio);
+                switch (resultado_comp)
+                {
+                    case 'mayor': 
+                        informar(MENSAJE_INFO_MAYOR);
+                    break;
+                    case 'menor':  
+                        informar(MENSAJE_INFO_MENOR);
+                    break;
+                    case 'igual':  
+                        informar(MENSAJE_INFO_ACIERTO);
+                        acertado = true;
+                    break;
+                }
+                num_intentos = num_intentos + 1;
+            }
+            while (!acertado && leQuedanVidas (num_intentos))
+            if (!acertado)
+            {
+                informar (MENSAJE_INFO_FALLO + num_aleatorio);
+            }
+            
+         }
+      </script>
+   </head>
+   <body>
+   </body>
+</html>
