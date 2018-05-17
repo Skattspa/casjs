@@ -20,14 +20,86 @@
  *4) EXTRA: Sólo si resolviste los puntos anteriores, implementa una versión recursiva
 -->
     <script language="javascript">
-        function adivinaQueHace() {
+
+
+        function esCadenaCapicuaRec(cadenaTexto) {
+
+            var resultado = false;
+            var primerCaracter = "";
+            var ultimoCaracter = "";
+            var cadenaRecortada = "";
+
+            var logitudCadena = cadenaTexto.length;
+            if ((logitudCadena == 1) || (logitudCadena == 0)) {
+
+                resultado = true;
+
+            }
+            else {
+
+                primerCaracter = cadenaTexto.charAt(0);
+                ultimoCaracter = cadenaTexto.charAt(cadenaTexto.length - 1);
+                cadenaRecortada = cadenaTexto.substring(1, cadenaTexto.length - 1);
+                resultado = (primerCaracter == ultimoCaracter) && esCadenaCapicuaRec(cadenaRecortada);
+            }
+
+            return resultado
+
+        }
+        function palabraDadaVuelta(cadena) {
+
+            var cad_reves = "";
+            var indice;
+            var letraActual;
+
+            for (indice = cadena.length - 1; indice >= 0; indice--) {
+                letraActual = cadena.charAt(indice);
+                cad_reves = cad_reves + letraActual;
+                console.log(" la palabra es....  " + cad_reves);
+            }
+            return cad_reves;
+        }
+
+        function siEsPalindroma() {
+            var cad = document.getElementById("palabra").value;
+            var cad_reves = palabraDadaVuelta(cad);
+
+            if (palabra == cad_reves) {
+                alert("La palabra SIIIIIII es palindroma, acertaste amiguete")
+            } else {
+                alert("la palabra NOOOOO es palindroma amiguete")
+            }
+        }
+
+        function isPalindrome() {
+            var flag = true;  //miro si son iguales
+            var mensaje = "";
+            var cad = document.getElementById("palabra").value;
+            var largo = cad.length;
+
+            for (var i = 0; flag && i < largo / 2; i++) {
+                cad[i] == cad[largo - 1 - i] ? flag = true : flag = false;
+            }
+            mensaje = flag ? "SI" : "NO";
+            document.getElementById("p1").innerHTML = "La palabra es " + mensaje + " un palindromo";
+            return flag;
+        }
+
+
+
+        function esPalidromo() {
             var bd = true;
             var cad = document.getElementById("palabra").value;
             var i = 0;
             var j = cad.length - 1;
 
-            while ((i <= j) && (bd)) {
-                bd = cad.charAt(i) == cad.charAt(j);
+            while ((i < j) && (bd)) {
+                //bd = cad.charAt(i) == cad.charAt(j);
+                if (cad.charAt(i) == cad.charAt(j)) {
+                    bd = true;
+                } else {
+                    bd = false;
+                }
                 i++;
                 j--;
             }
@@ -35,13 +107,15 @@
 
             return bd;
         }
+
     </script>
 </head>
 
 <body>
     <label for="palabra">PALABRA</label>
     <input type="text" id="palabra">
-    <button onclick="adivinaQueHace();">Empieza</button>
+    <button onclick="isPalindrome();">Empieza</button>
+    <p id="p1"></p>
 </body>
 
 </html>
