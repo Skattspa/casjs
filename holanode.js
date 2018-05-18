@@ -1,4 +1,4 @@
-function palabraDadaVuelta(cadena) {
+/*function palabraDadaVuelta(cadena) {
 
     var cad_reves = "";
     var indice;
@@ -14,4 +14,10 @@ function palabraDadaVuelta(cadena) {
 
 console.log("Este es mi primer node");
 var cadreves = palabraDadaVuelta ("JUANITO");
-console.log ("JUANITO al revés es " + cadreves);
+console.log ("JUANITO al revés es " + cadreves);*/
+
+var array = new Array ();
+array.push ("Laura");
+console.log (array[0]);
+
+
