@@ -21,3 +21,4 @@ array.push ("Laura");
 console.log (array[0]);
 
 
+    
