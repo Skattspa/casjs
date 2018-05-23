@@ -1,0 +1,27 @@
+
+#imagen img {
+    width: 240px;
+    height: 320px;
+    float: left;
+}
+
+#seleccion_color {
+    margin-left: 50px;
+    float: left;
+}
+
+#seleccion_color div {
+    cursor: pointer;
+    width: 32px;
+    height: 32px;
+    margin: 25px;
+    float: none;
+}
+#botonplay 
+{
+    
+        max-width: 100%;
+        max-height: 100%;
+
+    
+}
