@@ -5,16 +5,25 @@
         WEB CON JS
     </title>
     <link rel="stylesheet" type="text/css" href="estilo2.css">
+    <script src="https://albert-gonzalez.github.io/easytimer.js/dist/easytimer.min.js"></script>
     <script language="javascript">
         window.onload = iniciarTablero;
+        var reloj; 
         var imagen_tocada = false;
         var primer_img_tocada; var segunda_imagen_tocada;
         var num_aciertos = 0;//representa el número de aciertos que lleva el usuario
         const TOTAL_ACIERTOS = 2;//número de aciertos totales para dar por concluido el juego
         var abierto = true;
 
+        function actualizarReloj()
+        {
+            reloj.addEventListener('secondsUpdated', function (e) {
+                document.getElementById("tiempo").innerHTML = reloj.getTimeValues().toString();
+            });
+        }
         function iniciarTablero() {
             console.log("Inicia Tablero . . .");
+            
             //Asignar los listeners
             var td_actual;
             var hijo_img;
@@ -28,6 +37,9 @@
             }
             console.log("Fin Inicia Tablero . . .");
             //Ocultar las imágenes
+            reloj = new Timer();
+            reloj.start();
+            actualizarReloj();
         }
 
         function tocadoImagen(evento) {
@@ -58,13 +70,16 @@
                         if (num_aciertos == TOTAL_ACIERTOS) {
                             console.log("Ha ganado");
                             //alert ("Has ganado socio, ENHORABUENA");
-                            location.href = "http://www.cnn.com";
+                            reloj.stop();
+                            //location.href = "http://www.cnn.com";
+                            
                         }
 
                     } else {
                         console.log("FALLO, las tapo");
                         abierto = false;
-                        setTimeout(function(){ voltear(primer_img_tocada, segunda_imagen_tocada) } , 900);
+                        setTimeout(function(){ voltear(primer_img_tocada, segunda_imagen_tocada) } , 
+                        900);
                     }
 
                 }
@@ -97,6 +112,7 @@
             </td>
         </tr>
     </table>
+    <div id="tiempo"></div>
 </body>
 
 </html>
