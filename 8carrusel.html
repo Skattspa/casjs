@@ -12,27 +12,32 @@
         var array_fotos;
         var elemento_imagen;
         var num_foto_actual;
+        var id_interval;
         function cambiarColor(evento) {
             // cambiar color
             console.log("Cambio de foto");
             console.log(evento.currentTarget.id);
             if (evento.currentTarget.id == 'fotosalmon') {
                 elemento_imagen.src = 'fotosalmon.jpg';
+                num_foto_actual = array_fotos.indexOf ('fotosalmon.jpg');
             } else if (evento.currentTarget.id == 'fotonegra') {
                 elemento_imagen.src = 'fotonegra.jpg';
+                num_foto_actual = array_fotos.indexOf ('fotonegra.jpg');
             } else {
                 elemento_imagen.src = 'fotoblanca.jpg';
+                num_foto_actual = array_fotos.indexOf ('fotoblanca.jpg');
             }
 
-
+            console.log ("Num Foto actual = " + num_foto_actual);
+            console.log ("Nom Foto actual = " + array_fotos  [num_foto_actual]);
 
         }
         function inicio() {
             num_foto_actual = 0;//
             array_fotos = new Array();
-            array_fotos.push("fotonegra.jpg");
-            array_fotos.push("fotosalmon.jpg");
-            array_fotos.push("fotoblanca.jpg");
+            array_fotos.push("fotonegra.jpg");//0
+            array_fotos.push("fotosalmon.jpg");//1
+            array_fotos.push("fotoblanca.jpg");//2
             elemento_imagen = document.getElementById("foto_actual");
             elemento_imagen.src = array_fotos[num_foto_actual];
             var div1 = document.getElementById("fotosalmon");
@@ -42,6 +47,31 @@
             var div3 = document.getElementById("fotoblanca");
             div3.addEventListener('click', cambiarColor);
         }
+
+        function cambiaFoto ()
+        {
+            if (num_foto_actual == 2)
+            {
+                num_foto_actual = 0;
+            } else {
+                num_foto_actual = num_foto_actual +1;
+            }
+            elemento_imagen.src = array_fotos[num_foto_actual];
+
+        }
+        
+        function iniciarCarrusel ()
+        {
+            console.log ("iniciando carrusel ...");
+            id_interval = setInterval (cambiaFoto, 1500);
+
+        }
+
+        function pararCarrusel()
+        {
+            console.log ("parando carrusel ...");  
+            clearInterval (id_interval);
+        }
     </script>
 </head>
 
@@ -49,14 +79,14 @@
 
     <div id="marco">
         <div id="imagen">
-            <img id="foto_actual">
+            <img onmouseover="pararCarrusel();" onmouseout="iniciarCarrusel();" id="foto_actual">
         </div>
         <div id="seleccion_color">
             <div id="fotosalmon" style="background-color: rgb(248, 128, 59)"></div>
             <div id="fotonegra" style="background-color: black"></div>
             <div id="fotoblanca" style="background-color: rgb(243, 234, 234)"></div>
             <div>
-                <img id="botonplay" src="botonplay.png">
+                <img onclick="iniciarCarrusel();" id="botonplay" src="botonplay.png">
             </div>
         </div>
     </div>
